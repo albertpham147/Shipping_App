@@ -14,10 +14,18 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
+      <Stack>        
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="restaurants/FoodDeliveryScreen" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+
+        {/* Login */}
+        <Stack.Screen name="login" options={{ headerShown: false }} />
+
+        {/* Restaurants */}
+        <Stack.Screen name="restaurants/restaurantList" options={{ headerShown: false }} />
+        <Stack.Screen name="locationSelection" options={{ headerShown: false }} />
+        <Stack.Screen name="restaurants/restaurantMenu" options={{ headerShown: false }} />
+
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

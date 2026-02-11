@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text,StyleSheet, ScrollView,TextInput, TouchableOpacity,Image } from 'react-native';
+import { View, Text,StyleSheet, ScrollView,TextInput, TouchableOpacity,Image, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { restaurants, categories } from '../restaurants/RestaurantData';
+import { restaurants, categories } from './restaurantData';
+import { useRouter } from 'expo-router';
 
 import PromoCodeIcon from '@/assets/icons/promo-code.png';
 
@@ -10,17 +11,25 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Entypo from '@expo/vector-icons/Entypo';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
-const FoodDeliveryScreen = () => {
+export default function RestaurantListScreen(){
   const [searchText, setSearchText] = useState('');
   const [favorites, setFavorites] = useState([]);
+  const router = useRouter();
 
-  const toggleFavorite = (id: number) => {
-    setFavorites(prev => ({
-      ...prev,
-      id: !prev[id]
-    }));
-  };
+  let currentLocation: string = "123 Nguyễn Huệ, Quận 1, TP.HCM";
+
+  // const toggleFavorite = (id: number) => {
+  //   setFavorites(prev => ({
+  //     ...prev,
+  //     id: !prev[id]
+  //   }));
+  // };
+
+  function navigateLocationSelection(currentLocation: string){
+    router.push(`/restaurants/restaurantMenu`);
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -38,8 +47,10 @@ const FoodDeliveryScreen = () => {
             <View style={styles.locationTextContainer}>
               <Text style={styles.deliveryLabel}>GIAO ĐẾN</Text>
               <View style={styles.addressRow}>
-                <Text style={styles.address}>123 Nguyễn Huệ, Quận 1, TP.HCM</Text>
-                {/* <Text style={styles.dropdownIcon}>▼</Text> */}
+                <Text style={styles.address}>{currentLocation}</Text>
+                <Pressable onPress={() => navigateLocationSelection(currentLocation)}>
+                  <MaterialIcons name="keyboard-arrow-down" style={styles.dropdownIcon} size={24} color="black" />
+                </Pressable>
               </View>
             </View>
           </View>
@@ -428,4 +439,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FoodDeliveryScreen;
+
