@@ -20,12 +20,20 @@ export default function RootLayout() {
 
         {/* Login */}
         <Stack.Screen name="login" options={{ headerShown: false }} />
+        <Stack.Screen name="signup" options={{ headerShown: false }} />
+
+        {/* Profile */}
+        <Stack.Screen name="profiles/profile" options={{ headerShown: false }} />
 
         {/* Restaurants */}
-        <Stack.Screen name="restaurants/restaurantList" options={{ headerShown: false }} />
-        <Stack.Screen name="locationSelection" options={{ headerShown: false }} />
-        <Stack.Screen name="restaurants/restaurantMenu" options={{ headerShown: false }} />
+        <Stack.Screen name="foods/restaurantList" options={{ headerShown: false }} />
+        <Stack.Screen name="foods/restaurantMenu" options={{ headerShown: false }} />
+        <Stack.Screen name="foods/restaurantDetail" options={{ headerShown: false }} />
+        <Stack.Screen name="foods/cart" options={{ headerShown: false }} />
+        <Stack.Screen name="foods/orderTracking" options={{ headerShown: false }} />
 
+        {/* Location Selection */}
+        <Stack.Screen name="locationSelection" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

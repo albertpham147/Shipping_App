@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text,StyleSheet, ScrollView,TextInput, TouchableOpacity,Image, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-import { restaurants, categories } from './restaurantData';
 import { useRouter } from 'expo-router';
 
 import PromoCodeIcon from '@/assets/icons/promo-code.png';
@@ -13,22 +11,51 @@ import EvilIcons from '@expo/vector-icons/EvilIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
-export default function RestaurantListScreen(){
+export default function RestaurantList(){
   const [searchText, setSearchText] = useState('');
-  const [favorites, setFavorites] = useState([]);
   const router = useRouter();
+
+  let cartCount: number = 0;
+
+  const restaurants = [
+    {
+      id: 1,
+      name: 'Phở Gia Truyền - Lý Quốc Sư',
+      image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
+      rating: 4.9,
+      deliveryTime: "15'",
+      distance: '1.2 km',
+      discount: 'Giảm 25k cho đơn từ 100k',
+      tag: 'BÁN CHẠY',
+      tagColor: '#FF6B35',
+    },
+    {
+      id: 2,
+      name: 'Bánh Mì Huỳnh Hoa - Lê Thị Riêng',
+      image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800',
+      rating: 4.7,
+      deliveryTime: "20'",
+      distance: '2.5 km',
+      discount: 'Freeship đơn từ 50k',
+      tag: 'ĐỐI TÁC',
+      tagColor: '#10B981',
+    },
+  ];
+
+    // Food categories
+  const categories = [
+    { id: 1, name: 'Phở', icon: '🍜', color: '#FF6B35' },
+    { id: 2, name: 'Bánh Mì', icon: '🥖', color: '#4A5568' },
+    { id: 3, name: 'Cơm Tấm', icon: '🍚', color: '#4A5568' },
+    { id: 4, name: 'Bún Chả', icon: '🍝', color: '#4A5568' },
+    { id: 5, name: 'Cà Phê', icon: '☕', color: '#4A5568' },
+    { id: 6, name: 'Trà sữa', icon: '🧋', color: '#4A5568' },
+  ];
 
   let currentLocation: string = "123 Nguyễn Huệ, Quận 1, TP.HCM";
 
-  // const toggleFavorite = (id: number) => {
-  //   setFavorites(prev => ({
-  //     ...prev,
-  //     id: !prev[id]
-  //   }));
-  // };
-
-  function navigateLocationSelection(currentLocation: string){
-    router.push(`/restaurants/restaurantMenu`);
+  function navigateLocationSelection(){
+    router.push(`/foods/restaurantMenu`);
   }
 
   return (
@@ -48,12 +75,20 @@ export default function RestaurantListScreen(){
               <Text style={styles.deliveryLabel}>GIAO ĐẾN</Text>
               <View style={styles.addressRow}>
                 <Text style={styles.address}>{currentLocation}</Text>
-                <Pressable onPress={() => navigateLocationSelection(currentLocation)}>
+                <Pressable onPress={() => navigateLocationSelection()}>
                   <MaterialIcons name="keyboard-arrow-down" style={styles.dropdownIcon} size={24} color="black" />
                 </Pressable>
               </View>
             </View>
           </View>
+
+          {/* Shopping cart */}
+          <TouchableOpacity>
+            <Entypo name="shopping-cart" size={24} color="black" style={styles.shoppingCart}/>
+            <View style={styles.cartBadge}>
+                <Text style={styles.cartBadgeText}>{cartCount}</Text>
+            </View>
+          </TouchableOpacity>
         </View>
 
         {/* Search Bar */}
@@ -123,16 +158,6 @@ export default function RestaurantListScreen(){
                 ]}>
                   <Text style={styles.tagText}>{restaurant.tag}</Text>
                 </View>
-
-                {/* Favorite Button */}
-                {/* <TouchableOpacity 
-                  style={styles.favoriteButton}
-                  onPress={() => toggleFavorite(restaurant.id)}
-                >
-                  <Text style={styles.favoriteIcon}>
-                    {favorites[restaurant.id] ? '❤️' : '🤍'}
-                  </Text>
-                </TouchableOpacity> */}
               </View>
 
               {/* Restaurant Info */}
@@ -232,9 +257,27 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   dropdownIcon: {
-    fontSize: 12,
     color: '#6B7280',
     marginLeft: 4,
+  },
+  shoppingCart: {
+    marginLeft: 5
+  },
+  cartBadge:{
+    position: 'absolute',
+    top: -4,
+    right: -4,
+    backgroundColor: '#FFFFFF',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cartBadgeText:{
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#FF6B35',
   },
   searchContainer: {
     flexDirection: 'row',

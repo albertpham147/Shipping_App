@@ -8,7 +8,7 @@ import AppleImage from '@/assets/icons/apple.png';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Fontisto from '@expo/vector-icons/Fontisto';
 
-const LoginScreen = () => {
+export default function Login(){
   const [emailOrPhone, setEmailOrPhone] = useState('');
 
   return (
@@ -314,5 +314,3 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 });
-
-export default LoginScreen;

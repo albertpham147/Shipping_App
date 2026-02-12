@@ -2,17 +2,27 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import EvilIcons from '@expo/vector-icons/EvilIcons';
+import { useRouter } from 'expo-router';
 
-export default function LocationSelectionScreen(){
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+import Entypo from '@expo/vector-icons/Entypo';
+
+export default function LocationSelection(){
   const [searchText, setSearchText] = useState('');
+
+  const router = useRouter();
 
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton}>
-          <Text style={styles.backIcon}>←</Text>
+        <TouchableOpacity style={styles.backButton} onPress={() => {router.back();}}>
+          <Ionicons name="chevron-back" size={24} color="black" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Chọn địa chỉ</Text>
         <View style={styles.headerSpacer} />
@@ -34,7 +44,7 @@ export default function LocationSelectionScreen(){
         {/* Use Current Location Button */}
         <TouchableOpacity style={styles.currentLocationButton}>
           <View style={styles.currentLocationIcon}>
-            <Text style={styles.targetIcon}>🎯</Text>
+            <MaterialCommunityIcons name="target" size={24} color="black" />
           </View>
           <View style={styles.currentLocationTextContainer}>
             <Text style={styles.currentLocationTitle}>Sử dụng vị trí hiện tại</Text>
@@ -49,7 +59,7 @@ export default function LocationSelectionScreen(){
           {/* Home */}
           <TouchableOpacity style={styles.locationItem}>
             <View style={styles.locationIconContainer}>
-              <Text style={styles.locationIcon}>🏠</Text>
+              <FontAwesome6 name="house-chimney" size={24} color="black" />
             </View>
             <View style={styles.locationTextContainer}>
               <Text style={styles.locationTitle}>Nhà</Text>
@@ -62,7 +72,7 @@ export default function LocationSelectionScreen(){
           {/* Work */}
           <TouchableOpacity style={styles.locationItem}>
             <View style={styles.locationIconContainer}>
-              <Text style={styles.locationIcon}>💼</Text>
+              <FontAwesome name="briefcase" size={24} color="black" />
             </View>
             <View style={styles.locationTextContainer}>
               <Text style={styles.locationTitle}>Công ty</Text>
@@ -79,7 +89,7 @@ export default function LocationSelectionScreen(){
           
           <TouchableOpacity style={styles.locationItem}>
             <View style={styles.locationIconContainer}>
-              <Text style={styles.historyIcon}>🕐</Text>
+              <AntDesign name="clock-circle" size={24} color="black" />
             </View>
             <View style={styles.locationTextContainer}>
               <Text style={styles.locationTitle}>123 Lê Lợi</Text>
@@ -91,7 +101,7 @@ export default function LocationSelectionScreen(){
 
           <TouchableOpacity style={styles.locationItem}>
             <View style={styles.locationIconContainer}>
-              <Text style={styles.historyIcon}>🕐</Text>
+              <AntDesign name="clock-circle" size={24} color="black" />
             </View>
             <View style={styles.locationTextContainer}>
               <Text style={styles.locationTitle}>Landmark 81</Text>
@@ -103,7 +113,7 @@ export default function LocationSelectionScreen(){
 
           <TouchableOpacity style={styles.locationItem}>
             <View style={styles.locationIconContainer}>
-              <Text style={styles.historyIcon}>🕐</Text>
+              <AntDesign name="clock-circle" size={24} color="black" />
             </View>
             <View style={styles.locationTextContainer}>
               <Text style={styles.locationTitle}>Vinhomes Central Park</Text>
@@ -118,7 +128,7 @@ export default function LocationSelectionScreen(){
       {/* Bottom Button */}
       <View style={styles.bottomButtonContainer}>
         <TouchableOpacity style={styles.mapButton}>
-          <Text style={styles.mapIcon}>🗺️</Text>
+          <Entypo name="map" size={24} color="white" style={styles.mapIcon}/>
           <Text style={styles.mapButtonText}>Chọn trên bản đồ</Text>
         </TouchableOpacity>
       </View>
@@ -145,10 +155,6 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  backIcon: {
-    fontSize: 24,
-    color: '#1F2937',
   },
   headerTitle: {
     fontSize: 18,
@@ -199,9 +205,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 12,
   },
-  targetIcon: {
-    fontSize: 24,
-  },
   currentLocationTextContainer: {
     flex: 1,
   },
@@ -243,9 +246,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 12,
   },
-  locationIcon: {
-    fontSize: 24,
-  },
   historyIcon: {
     fontSize: 24,
   },
@@ -278,7 +278,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   mapIcon: {
-    fontSize: 20,
     marginRight: 8,
   },
   mapButtonText: {

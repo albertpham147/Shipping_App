@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function RestaurantMenuScreen(){
+import Ionicons from '@expo/vector-icons/Ionicons';
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+import AntDesign from '@expo/vector-icons/AntDesign';
+
+export default function RestaurantMenu(){
   const [searchText, setSearchText] = useState('Bánh Mì');
   const [selectedTab, setSelectedTab] = useState('nearby'); // nearby, bestseller, highrated, deals
 
@@ -11,7 +15,7 @@ export default function RestaurantMenuScreen(){
     {
       id: 1,
       name: 'Bánh Mì Huỳnh Hoa - Lê Thị Ri...',
-      image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800',
+      image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
       rating: 4.8,
       distance: '2.5 km',
       deliveryTime: '20 phút',
@@ -25,26 +29,26 @@ export default function RestaurantMenuScreen(){
           id: 1,
           name: 'Bánh Mì Thập...',
           price: '65.000đ',
-          image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400',
+          image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
         },
         {
           id: 2,
           name: 'Bánh Mì Gà Xé',
           price: '55.000đ',
-          image: 'https://images.unsplash.com/photo-1564489563601-c53cfc451e93?w=400',
+          image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
         },
         {
           id: 3,
           name: 'Bánh Mì Pate',
           price: '45.000đ',
-          image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
+          image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
         },
       ],
     },
     {
       id: 2,
       name: 'Bánh Mì Hồng Hoa - Nguyễn Trãi',
-      image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800',
+      image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
       rating: 4.6,
       distance: '1.8 km',
       deliveryTime: '15 phút',
@@ -56,26 +60,26 @@ export default function RestaurantMenuScreen(){
           id: 4,
           name: 'Bánh Mì Que',
           price: '35.000đ',
-          image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
+          image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
         },
         {
           id: 5,
           name: 'Heo Quay Giòn',
           price: '30.000đ',
-          image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
+          image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
         },
         {
           id: 6,
           name: 'Bánh Mì Ốp La',
           price: '22.000đ',
-          image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400',
+          image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
         },
       ],
     },
     {
       id: 3,
       name: 'Bánh Mì Bảy Hổ - Huỳnh Khương...',
-      image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800',
+      image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800',
       rating: 4.7,
       distance: '3.2 km',
       deliveryTime: '25 phút',
@@ -92,18 +96,18 @@ export default function RestaurantMenuScreen(){
     { id: 'highrated', label: 'Đánh giá cao' },
     { id: 'deals', label: 'Ưu đãi' },
   ];
-
+  
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton}>
-          <Text style={styles.backIcon}>←</Text>
+          <Ionicons name="chevron-back" size={24} color="black" />
         </TouchableOpacity>
 
         {/* Search Bar */}
         <View style={styles.searchContainer}>
-          <Text style={styles.searchIcon}>🔍</Text>
+          <EvilIcons name="search" size={24} color="black" />
           <TextInput
             style={styles.searchInput}
             value={searchText}
@@ -114,41 +118,43 @@ export default function RestaurantMenuScreen(){
             <TouchableOpacity 
               style={styles.clearButton}
               onPress={() => setSearchText('')}
-            >
+              >
               <Text style={styles.clearIcon}>✕</Text>
             </TouchableOpacity>
           )}
         </View>
 
         <TouchableOpacity style={styles.filterButton}>
-          <Text style={styles.filterIcon}>☰</Text>
+          <AntDesign name="menu" size={24} color="black"/>
         </TouchableOpacity>
       </View>
 
       {/* Tabs */}
-      <ScrollView 
-        horizontal 
-        showsHorizontalScrollIndicator={false}
-        style={styles.tabsContainer}
-      >
-        {tabs.map((tab) => (
-          <TouchableOpacity
-            key={tab.id}
-            style={[
-              styles.tab,
-              selectedTab === tab.id && styles.tabActive
-            ]}
-            onPress={() => setSelectedTab(tab.id)}
+      <View style={{flex: 1, height: 30}}>  
+        <ScrollView 
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          style={styles.tabsContainer}
           >
-            <Text style={[
-              styles.tabText,
-              selectedTab === tab.id && styles.tabTextActive
-            ]}>
-              {tab.label}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+          {tabs.map((tab) => (
+            <TouchableOpacity
+              key={tab.id}
+              style={[
+                styles.tab,
+                selectedTab === tab.id && styles.tabActive
+              ]}
+              onPress={() => setSelectedTab(tab.id)}
+            >
+              <Text style={[
+                styles.tabText,
+                selectedTab === tab.id && styles.tabTextActive
+              ]}>
+                {tab.label}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
 
       {/* Restaurant List */}
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -174,7 +180,7 @@ export default function RestaurantMenuScreen(){
                 </Text>
                 
                 <View style={styles.restaurantMeta}>
-                  <Text style={styles.rating}>⭐ {restaurant.rating}</Text>
+                  <AntDesign name="star" style={styles.starIcon} size={14}/>
                   <Text style={styles.metaSeparator}>•</Text>
                   <Text style={styles.metaText}>{restaurant.distance}</Text>
                   <Text style={styles.metaSeparator}>•</Text>
@@ -299,15 +305,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  filterIcon: {
-    fontSize: 24,
-    color: '#1F2937',
-  },
   
   // Tabs
   tabsContainer: {
     backgroundColor: '#FFFFFF',
-    paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#F3F4F6',
   },
@@ -331,6 +332,7 @@ const styles = StyleSheet.create({
   tabTextActive: {
     color: '#FF6B35',
     fontWeight: '700',
+    marginBottom: 6
   },
   
   // Restaurant Card
@@ -381,10 +383,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 12,
   },
-  rating: {
-    fontSize: 14,
-    color: '#1F2937',
-    fontWeight: '600',
+  starIcon: {
+    marginRight: 4,
+    color: '#ffa534',
   },
   metaSeparator: {
     fontSize: 14,
