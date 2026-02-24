@@ -8,7 +8,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 
 import promocodeImage from '@/assets/icons/promo-code.png'
 
-export default function RestaurantDetail(){
+export default function RestaurantDetailsSceen(){
     const [selectedTab, setSelectedTab] = useState('featured'); // featured, pho-bo, pho-ga, drinks, dessert
     const [cartCount, setCartCount] = useState(2);
     const [cartTotal, setCartTotal] = useState(120000);

@@ -11,7 +11,7 @@ import EvilIcons from '@expo/vector-icons/EvilIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
-export default function RestaurantList(){
+export default function RestaurantListScreen(){
   const [searchText, setSearchText] = useState('');
   const router = useRouter();
 

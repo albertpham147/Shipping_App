@@ -6,7 +6,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-export default function RestaurantMenu(){
+export default function RestaurantMenuScreen(){
   const [searchText, setSearchText] = useState('Bánh Mì');
   const [selectedTab, setSelectedTab] = useState('nearby'); // nearby, bestseller, highrated, deals
 

@@ -15,6 +15,27 @@ export default function HomeScreen() {
   return (
     <SafeAreaView>
       <View>
+        <Pressable onPress={() => {router.push('/foods/restaurantList')}}>
+          <View>
+            <Text>
+              Page restaurant list
+            </Text>
+          </View>
+        </Pressable>
+        <Pressable onPress={() => {router.push('/foods/restaurantMenu')}}>
+          <View>
+            <Text>
+              Page restaurant menu
+            </Text>
+          </View>
+        </Pressable>
+        <Pressable onPress={() => {router.push('/foods/restaurantDetails')}}>
+          <View>
+            <Text>
+              Page restaurant details
+            </Text>
+          </View>
+        </Pressable>
         <Pressable onPress={() => {router.push('/foods/orderTracking')}}>
           <View>
             <Text>
@@ -33,6 +54,27 @@ export default function HomeScreen() {
           <View>
             <Text>
               Page location selection
+            </Text>
+          </View>
+        </Pressable>
+        <Pressable onPress={() => {router.push('/foods/orderConfirmation')}}>
+          <View>
+            <Text>
+              Page order confirmation
+            </Text>
+          </View>
+        </Pressable>
+        <Pressable onPress={() => {router.push('/foods/dishReviews')}}>
+          <View>
+            <Text>
+              Page dish reviews
+              </Text>
+            </View>
+        </Pressable>
+        <Pressable onPress={() => {router.push('/foods/rating')}}>
+          <View>
+            <Text>
+              Page rating
             </Text>
           </View>
         </Pressable>

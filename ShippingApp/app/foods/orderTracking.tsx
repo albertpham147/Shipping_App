@@ -13,7 +13,7 @@ import Feather from '@expo/vector-icons/Feather';
 
 import userImage from '@/assets/icons/user.png'
 
-export default function orderTracking(){
+export default function orderTrackingScreen(){
   const [currentStatus, setCurrentStatus] = useState('preparing'); // confirmed, preparing, picking_up, delivering
 
   const router = useRouter();

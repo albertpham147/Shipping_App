@@ -8,7 +8,7 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 import promoCodeImage from '@/assets/icons/promo-code.png';
 
-export default function cart(){
+export default function CartScreen(){
   const [promoCode, setPromoCode] = useState('');
   
   // Cart items with quantities

@@ -28,9 +28,13 @@ export default function RootLayout() {
         {/* Restaurants */}
         <Stack.Screen name="foods/restaurantList" options={{ headerShown: false }} />
         <Stack.Screen name="foods/restaurantMenu" options={{ headerShown: false }} />
-        <Stack.Screen name="foods/restaurantDetail" options={{ headerShown: false }} />
+        <Stack.Screen name="foods/restaurantDetails" options={{ headerShown: false }} />
         <Stack.Screen name="foods/cart" options={{ headerShown: false }} />
         <Stack.Screen name="foods/orderTracking" options={{ headerShown: false }} />
+        <Stack.Screen name="foods/orderConfirmation" options={{ headerShown: false }} />
+        <Stack.Screen name="foods/dishReviews" options={{ headerShown: false }} />
+        <Stack.Screen name="foods/rating" options={{ headerShown: false }} />
+
 
         {/* Location Selection */}
         <Stack.Screen name="locationSelection" options={{ headerShown: false }} />
