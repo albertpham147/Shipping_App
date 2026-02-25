@@ -9,6 +9,14 @@ import {
   FlatList,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
+
+import Ionicons from '@expo/vector-icons/Ionicons';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import Entypo from '@expo/vector-icons/Entypo';
+import Feather from '@expo/vector-icons/Feather';
 
 interface Review {
   id: string;
@@ -24,6 +32,8 @@ interface Review {
 
 export default function DishReviewsSceen() {
   const [selectedFilter, setSelectedFilter] = useState('all'); // all, 5star, 4star, has-images
+
+  const router = useRouter();
 
   // Dish info
   const dish = {
@@ -72,7 +82,7 @@ export default function DishReviewsSceen() {
       id: '3',
       userName: 'Hoàng Nam',
       userAvatar: '',
-      rating: 5,
+      rating: 4,
       timeAgo: '3 ngày trước',
       comment: 'Hương vị ổn, giá hơi cao so với mặt bằng chung nhưng chất lượng thịt thì đáng đồng tiền. Nước dùng thanh, ít mỡ.',
       likes: 2,
@@ -97,12 +107,10 @@ export default function DishReviewsSceen() {
     return (
       <View style={styles.starsRow}>
         {[1, 2, 3, 4, 5].map((star) => (
-          <Text key={star} style={[
+          <AntDesign name="star" size={24} key={star} style={[
             styles.star,
             star <= rating ? styles.starFilled : styles.starEmpty
-          ]}>
-            ★
-          </Text>
+          ]} />
         ))}
       </View>
     );
@@ -122,7 +130,7 @@ export default function DishReviewsSceen() {
               </Text>
             </View>
           )}
-          
+
           <View style={styles.userDetails}>
             <Text style={styles.userName}>{item.userName}</Text>
             <View style={styles.ratingRow}>
@@ -133,7 +141,7 @@ export default function DishReviewsSceen() {
         </View>
 
         <TouchableOpacity style={styles.menuButton}>
-          <Text style={styles.menuIcon}>⋯</Text>
+          <Entypo name="dots-three-horizontal" size={20} color="black" style={styles.menuIcon}/>
         </TouchableOpacity>
       </View>
 
@@ -144,7 +152,7 @@ export default function DishReviewsSceen() {
       {item.images && item.images.length > 0 && (
         <View style={styles.reviewImages}>
           {item.images.map((imageUri, index) => (
-            <Image 
+            <Image
               key={index}
               source={{ uri: imageUri }}
               style={styles.reviewImage}
@@ -155,21 +163,19 @@ export default function DishReviewsSceen() {
 
       {/* Actions */}
       <View style={styles.reviewActions}>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.actionButton}
           onPress={() => handleLikeReview(item.id)}
         >
-          <Text style={[
+          <AntDesign name="like" size={24} color="black" style={[
             styles.actionIcon,
             item.hasLiked && styles.actionIconActive
-          ]}>
-            👍
-          </Text>
+          ]}/>
           <Text style={styles.actionText}>Hữu ích ({item.likes})</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.actionButton}>
-          <Text style={styles.actionIcon}>💬</Text>
+          <FontAwesome5 name="comment" size={24} color="black" style={styles.actionIcon} />
           <Text style={styles.actionText}>Phản hồi</Text>
         </TouchableOpacity>
       </View>
@@ -180,12 +186,12 @@ export default function DishReviewsSceen() {
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton}>
-          <Text style={styles.backIcon}>‹</Text>
+        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+          <Ionicons name="chevron-back" size={24} color="black" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Đánh giá món ăn</Text>
         <TouchableOpacity style={styles.searchButton}>
-          <Text style={styles.searchIcon}>🔍</Text>
+          <Feather name="search" size={24} color="black" style={styles.searchIcon}/>
         </TouchableOpacity>
       </View>
 
@@ -193,11 +199,11 @@ export default function DishReviewsSceen() {
         {/* Dish Info Card */}
         <View style={styles.dishCard}>
           <Image source={{ uri: dish.image }} style={styles.dishImage} />
-          
+
           <View style={styles.dishInfo}>
             <Text style={styles.dishName}>{dish.name}</Text>
             <Text style={styles.restaurantName}>{dish.restaurant}</Text>
-            
+
             <View style={styles.ratingRow}>
               <Text style={styles.ratingNumber}>{dish.rating}</Text>
               {renderStars(5)}
@@ -209,8 +215,8 @@ export default function DishReviewsSceen() {
         </View>
 
         {/* Filter Tabs */}
-        <ScrollView 
-          horizontal 
+        <ScrollView
+          horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.filtersContainer}
           contentContainerStyle={styles.filtersContent}
@@ -250,7 +256,7 @@ export default function DishReviewsSceen() {
       {/* Home Button */}
       <View style={styles.bottomButtonContainer}>
         <TouchableOpacity style={styles.homeButton}>
-          <Text style={styles.homeIcon}>🏠</Text>
+          <FontAwesome6 name="house" size={24} color="white" style={styles.homeIcon} />
           <Text style={styles.homeButtonText}>Về Trang Chủ</Text>
         </TouchableOpacity>
       </View>
@@ -263,7 +269,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F9FAFB',
   },
-  
+
   // Header
   header: {
     flexDirection: 'row',
@@ -281,11 +287,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  backIcon: {
-    fontSize: 32,
-    color: '#1F2937',
-    fontWeight: '300',
-  },
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
@@ -302,7 +303,7 @@ const styles = StyleSheet.create({
   searchIcon: {
     fontSize: 20,
   },
-  
+
   // Dish Card
   dishCard: {
     flexDirection: 'row',
@@ -361,7 +362,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  
+
   // Filters
   filtersContainer: {
     backgroundColor: '#FFFFFF',
@@ -389,7 +390,7 @@ const styles = StyleSheet.create({
   filterTextActive: {
     color: '#FFFFFF',
   },
-  
+
   // Reviews List
   reviewsList: {
     paddingTop: 8,
@@ -447,7 +448,6 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   menuIcon: {
-    fontSize: 24,
     color: '#9CA3AF',
   },
   reviewComment: {
@@ -491,7 +491,7 @@ const styles = StyleSheet.create({
     color: '#6B7280',
     fontWeight: '500',
   },
-  
+
   // Home Button
   bottomButtonContainer: {
     position: 'absolute',
@@ -512,7 +512,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   homeIcon: {
-    fontSize: 24,
     marginRight: 8,
   },
   homeButtonText: {

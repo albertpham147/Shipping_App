@@ -9,6 +9,9 @@ import {
     TextInput,
     ScrollView,
 } from 'react-native';
+import { useRouter } from 'expo-router';
+
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 interface OrderConfirmationModalProps {
     visible: boolean;
@@ -56,7 +59,7 @@ const OrderConfirmationModal: React.FC<OrderConfirmationModalProps> = ({
                 <View style={styles.modalContent}>
                     {/* Close Button */}
                     <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-                        <Text style={styles.closeIcon}>✕</Text>
+                        <AntDesign name="close" size={24} color="black" />
                     </TouchableOpacity>
 
                     {/* Header */}
@@ -67,7 +70,7 @@ const OrderConfirmationModal: React.FC<OrderConfirmationModalProps> = ({
                         <View style={styles.successSection}>
                             <View style={styles.successCircleOuter}>
                                 <View style={styles.successCircle}>
-                                    <Text style={styles.successCheckmark}>✓</Text>
+                                    <AntDesign name="check" size={48} color="white" />
                                 </View>
                             </View>
                         </View>
@@ -112,13 +115,11 @@ const OrderConfirmationModal: React.FC<OrderConfirmationModalProps> = ({
                                     key={star}
                                     onPress={() => handleStarPress(star)}
                                     style={styles.starButton}
-                                >
-                                    <Text style={[
+                                    >
+                                    <AntDesign name="star" size={36} color="black" style={[
                                         styles.star,
                                         rating >= star && styles.starActive
-                                    ]}>
-                                        ★
-                                    </Text>
+                                    ]}/>
                                 </TouchableOpacity>
                             ))}
                         </View>
@@ -162,6 +163,7 @@ const OrderConfirmationModal: React.FC<OrderConfirmationModalProps> = ({
 // Example usage component
 export default function OrderConfirmationScreen() {
     const [modalVisible, setModalVisible] = useState(true);
+    const router = useRouter();
 
     const sampleOrder = {
         id: '12345',
@@ -213,11 +215,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         zIndex: 10,
     },
-    closeIcon: {
-        fontSize: 24,
-        color: '#1F2937',
-    },
-
     // Header
     header: {
         fontSize: 20,
@@ -247,11 +244,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#FF6B35',
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    successCheckmark: {
-        fontSize: 48,
-        color: '#FFFFFF',
-        fontWeight: '700',
     },
     successTitle: {
         fontSize: 24,
@@ -337,7 +329,6 @@ const styles = StyleSheet.create({
         padding: 4,
     },
     star: {
-        fontSize: 48,
         color: '#E5E7EB',
     },
     starActive: {

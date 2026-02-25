@@ -8,8 +8,14 @@ import {
   TextInput,
   Image,
 } from 'react-native';
+import { useRouter } from 'expo-router';
+
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
+
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 // Type definition for React Native FormData file upload
 interface ImageFile {
@@ -18,7 +24,9 @@ interface ImageFile {
   type: string;
 }
 
-export default function RatingSceen(){
+export default function RatingScreen(){
+  const router = useRouter();
+
   const [foodRating, setFoodRating] = useState(4);
   const [serviceRating, setServiceRating] = useState(5);
   const [review, setReview] = useState('');
@@ -55,7 +63,7 @@ export default function RatingSceen(){
 
     // Launch image picker
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ['images'],
       allowsEditing: true,
       aspect: [4, 3],
       quality: 0.8,
@@ -114,8 +122,8 @@ export default function RatingSceen(){
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton}>
-          <Text style={styles.backIcon}>‹</Text>
+        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+          <FontAwesome5 name="chevron-left" size={24} color="black"/>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Đánh giá</Text>
         <View style={styles.headerSpacer} />
@@ -147,12 +155,10 @@ export default function RatingSceen(){
                 onPress={() => handleFoodRating(star)}
                 style={styles.starButton}
               >
-                <Text style={[
+                <AntDesign name="star" size={24} color="black" style={[
                   styles.star,
                   foodRating >= star && styles.starActive
-                ]}>
-                  ★
-                </Text>
+                ]}/>
               </TouchableOpacity>
             ))}
           </View>
@@ -180,7 +186,7 @@ export default function RatingSceen(){
               style={[styles.photoBox, styles.photoBoxAdd]}
               onPress={handlePickImage}
             >
-              <Text style={styles.photoIcon}>📷</Text>
+              <FontAwesome name="camera" size={24} color="black" style={styles.photoIcon}/>
             </TouchableOpacity>
 
             {/* Uploaded Images */}
@@ -199,7 +205,7 @@ export default function RatingSceen(){
             {/* Empty Photo Boxes */}
             {images.length < 3 && [...Array(2 - images.length)].map((_, index) => (
               <View key={`empty-${index}`} style={styles.photoBoxEmpty}>
-                <Text style={styles.photoIconEmpty}>🖼️</Text>
+                <AntDesign name="picture" size={24} color="black" style={styles.photoIconEmpty}/>
               </View>
             ))}
           </View>
@@ -216,12 +222,10 @@ export default function RatingSceen(){
                 onPress={() => handleServiceRating(star)}
                 style={styles.starButton}
               >
-                <Text style={[
+                <AntDesign name="star" size={24} color="black" style={[
                   styles.star,
                   serviceRating >= star && styles.starActive
-                ]}>
-                  ★
-                </Text>
+                ]}/>
               </TouchableOpacity>
             ))}
           </View>
@@ -265,11 +269,6 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  backIcon: {
-    fontSize: 32,
-    color: '#1F2937',
-    fontWeight: '300',
   },
   headerTitle: {
     fontSize: 20,
@@ -345,7 +344,6 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   star: {
-    fontSize: 48,
     color: '#E5E7EB',
   },
   starActive: {
