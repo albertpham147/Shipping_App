@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -8,11 +9,11 @@ import Entypo from '@expo/vector-icons/Entypo';
 
 import promocodeImage from '@/assets/icons/promo-code.png'
 
-export default function RestaurantDetailsSceen(){
+export default function RestaurantDetailsScreen(){   
+    const router = useRouter();
     const [selectedTab, setSelectedTab] = useState('featured'); // featured, pho-bo, pho-ga, drinks, dessert
     const [cartCount, setCartCount] = useState(2);
     const [cartTotal, setCartTotal] = useState(120000);
-
     const [contentHeight, setContentHeight] = useState(0);
 
     const handleContentSizeChange = (contentWidth: number, contentHeight: number) => {
@@ -60,7 +61,7 @@ export default function RestaurantDetailsSceen(){
             
             {/* Header Buttons */}
             <View style={styles.headerButtons}>
-            <TouchableOpacity style={styles.headerButton}>
+            <TouchableOpacity style={styles.headerButton} onPress={() => router.back()}>
                 <Ionicons name="chevron-back" size={24} color="black" />
             </TouchableOpacity>
             </View>
@@ -77,7 +78,9 @@ export default function RestaurantDetailsSceen(){
             <View style={styles.restaurantMeta}>
                 <AntDesign name="star" style={styles.starIcon} size={14}/>
                 <Text style={styles.metaSeparator}>•</Text>
-                <Text style={styles.metaText}>100+ đánh giá</Text>
+                <TouchableOpacity onPress={() => router.push('/foods/dishReviews')}>                 
+                    <Text style={styles.metaText}>100+ đánh giá</Text>
+                </TouchableOpacity>
                 <Text style={styles.metaSeparator}>•</Text>
                 <Text style={styles.metaText}>1.2 km</Text>
             </View>
@@ -88,7 +91,6 @@ export default function RestaurantDetailsSceen(){
                 <Text style={styles.deliveryText}>Giao hàng trong 15 - 25 phút</Text>
                 </View>
                 <View style={styles.discountBadge}>
-                {/* <Text style={styles.discountIcon}>🎫</Text> */}
                 <Image source={promocodeImage} style={styles.discountIcon}/>
                 <Text style={styles.discountText}>Mã giảm 25k</Text>
                 </View>
@@ -167,7 +169,7 @@ export default function RestaurantDetailsSceen(){
 
         {/* Cart Button */}
         <View style={styles.cartButtonContainer}>
-            <TouchableOpacity style={styles.cartButton}>
+            <TouchableOpacity style={styles.cartButton} onPress={() => router.push('/foods/cart')}>
             <View style={styles.cartButtonLeft}>
                 <View style={styles.cartIconContainer}>
                 <Entypo name="shopping-cart" size={30} color="black" />
@@ -223,7 +225,7 @@ const styles = StyleSheet.create({
     headerButton: {
         width: 40,
         height: 40,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 0.75)',
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',

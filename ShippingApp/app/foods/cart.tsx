@@ -5,12 +5,14 @@ import { useRouter } from 'expo-router';
 
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import Entypo from '@expo/vector-icons/Entypo';
 
 import promoCodeImage from '@/assets/icons/promo-code.png';
 
-export default function CartScreen(){
+export default function CartScreen() {
+  const router = useRouter();
   const [promoCode, setPromoCode] = useState('');
-  
+
   // Cart items with quantities
   const [cartItems, setCartItems] = useState([
     {
@@ -34,8 +36,6 @@ export default function CartScreen(){
       image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400',
     },
   ]);
-  
-  const router = useRouter();
 
   // Calculate totals
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -57,8 +57,8 @@ export default function CartScreen(){
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton} onPress={() => {router.back()}}>
-          <MaterialIcons name="keyboard-arrow-left" size={24} color="black"/>
+        <TouchableOpacity style={styles.backButton} onPress={() => { router.back() }}>
+          <MaterialIcons name="keyboard-arrow-left" size={24} color="black" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Giỏ hàng</Text>
         <TouchableOpacity>
@@ -86,7 +86,7 @@ export default function CartScreen(){
           <View style={styles.restaurantSection}>
             {/* Restaurant Header */}
             <View style={styles.restaurantHeader}>
-              <Image 
+              <Image
                 source={{ uri: cartItems[0].restaurantLogo }}
                 style={styles.restaurantLogo}
               />
@@ -96,11 +96,11 @@ export default function CartScreen(){
             {/* Cart Items */}
             {cartItems.map((item) => (
               <View key={item.id} style={styles.cartItem}>
-                <Image 
+                <Image
                   source={{ uri: item.image }}
                   style={styles.itemImage}
                 />
-                
+
                 <View style={styles.itemInfo}>
                   <Text style={styles.itemName}>{item.name}</Text>
                   <Text style={styles.itemDescription} numberOfLines={2}>
@@ -112,20 +112,20 @@ export default function CartScreen(){
                 </View>
 
                 <View style={styles.quantityContainer}>
-                  <TouchableOpacity 
+                  <TouchableOpacity
                     style={styles.quantityButton}
                     onPress={() => updateQuantity(item.id, -1)}
                   >
-                    <Text style={styles.quantityButtonText}>-</Text>
+                    <Entypo name="minus" size={24} color="black" style={styles.quantityButtonIcon}/>
                   </TouchableOpacity>
-                  
+
                   <Text style={styles.quantity}>{item.quantity}</Text>
-                  
-                  <TouchableOpacity 
+
+                  <TouchableOpacity
                     style={[styles.quantityButton, styles.quantityButtonAdd]}
                     onPress={() => updateQuantity(item.id, 1)}
                   >
-                    <Text style={styles.quantityButtonTextAdd}>+</Text>
+                    <Entypo name="plus" size={24} color="black" style={styles.quantityButtonIconAdd}></Entypo>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -136,10 +136,10 @@ export default function CartScreen(){
         {/* Promo Code Section */}
         <View style={styles.promoSection}>
           <Text style={styles.promoTitle}>Mã giảm giá</Text>
-          
+
           <View style={styles.promoInputContainer}>
             <View style={styles.promoInput}>
-              <Image source={promoCodeImage} style={styles.promoIcon}/>
+              <Image source={promoCodeImage} style={styles.promoIcon} />
               <TextInput
                 style={styles.promoTextInput}
                 placeholder="Nhập mã giảm giá"
@@ -148,7 +148,7 @@ export default function CartScreen(){
                 onChangeText={setPromoCode}
               />
             </View>
-            
+
             <TouchableOpacity style={styles.applyButton}>
               <Text style={styles.applyButtonText}>Áp dụng</Text>
             </TouchableOpacity>
@@ -192,10 +192,10 @@ export default function CartScreen(){
 
       {/* Checkout Button */}
       <View style={styles.checkoutButtonContainer}>
-        <TouchableOpacity style={styles.checkoutButton}>
+        <TouchableOpacity style={styles.checkoutButton} onPress={() => { alert('Đặt hàng thành công!'); router.push('/foods/orderTracking'); }}>
           <Text style={styles.checkoutButtonText}>Đặt hàng</Text>
           <Text style={styles.checkoutButtonPrice}>
-            {total.toLocaleString('vi-VN')}đ 
+            {total.toLocaleString('vi-VN')}đ
           </Text>
         </TouchableOpacity>
       </View>
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F9FAFB',
   },
-  
+
   // Header
   header: {
     flexDirection: 'row',
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     color: '#FF6B35',
     fontWeight: '600',
   },
-  
+
   // Delivery Address
   deliveryAddress: {
     flexDirection: 'row',
@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#6B7280',
   },
-  
+
   // Restaurant Section
   restaurantSection: {
     backgroundColor: '#FFFFFF',
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#1F2937',
   },
-  
+
   // Cart Item
   cartItem: {
     flexDirection: 'row',
@@ -346,12 +346,12 @@ const styles = StyleSheet.create({
   quantityButtonAdd: {
     backgroundColor: '#FF6B35',
   },
-  quantityButtonText: {
+  quantityButtonIcon: {
     fontSize: 20,
     color: '#6B7280',
     fontWeight: '600',
   },
-  quantityButtonTextAdd: {
+  quantityButtonIconAdd: {
     fontSize: 20,
     color: '#FFFFFF',
     fontWeight: '600',
@@ -362,7 +362,7 @@ const styles = StyleSheet.create({
     color: '#1F2937',
     marginHorizontal: 16,
   },
-  
+
   // Promo Section
   promoSection: {
     backgroundColor: '#FFFFFF',
@@ -413,7 +413,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#FFFFFF',
   },
-  
+
   // Summary Section
   summarySection: {
     backgroundColor: '#FFFFFF',
@@ -459,7 +459,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#FF6B35',
   },
-  
+
   // Checkout Button
   checkoutButtonContainer: {
     position: 'absolute',

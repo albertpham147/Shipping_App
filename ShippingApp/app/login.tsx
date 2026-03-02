@@ -7,9 +7,12 @@ import FaceBookImage from '@/assets/icons/facebook.png';
 import AppleImage from '@/assets/icons/apple.png';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Fontisto from '@expo/vector-icons/Fontisto';
+import { useRouter } from 'expo-router';
 
 export default function Login(){
+  const router = useRouter();
   const [emailOrPhone, setEmailOrPhone] = useState('');
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -55,7 +58,7 @@ export default function Login(){
           </View>
 
           {/* Continue Button */}
-          <TouchableOpacity style={styles.continueButton}>
+          <TouchableOpacity style={styles.continueButton} onPress={() => { alert('Đăng nhập thành công!'); router.push('/foods/restaurantList'); }}>
             <Text style={styles.continueButtonText}>Tiếp tục</Text>
           </TouchableOpacity>
 
@@ -92,7 +95,7 @@ export default function Login(){
           {/* Sign Up Link */}
           <View style={styles.signupContainer}>
             <Text style={styles.signupText}>Bạn chưa có tài khoản? </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => router.push('/signup')}>
               <Text style={styles.signupLink}>Đăng ký ngay</Text>
             </TouchableOpacity>
           </View>

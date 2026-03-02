@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import Entypo from '@expo/vector-icons/Entypo';
 
 export default function RestaurantMenuScreen(){
+  const router = useRouter();
   const [searchText, setSearchText] = useState('Bánh Mì');
   const [selectedTab, setSelectedTab] = useState('nearby'); // nearby, bestseller, highrated, deals
 
@@ -101,7 +104,7 @@ export default function RestaurantMenuScreen(){
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton}>
+        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
           <Ionicons name="chevron-back" size={24} color="black" />
         </TouchableOpacity>
 
@@ -161,7 +164,7 @@ export default function RestaurantMenuScreen(){
         {restaurants.map((restaurant) => (
           <View key={restaurant.id} style={styles.restaurantCard}>
             {/* Restaurant Header */}
-            <TouchableOpacity style={styles.restaurantHeader}>
+            <TouchableOpacity style={styles.restaurantHeader} onPress={() => router.push(`/foods/restaurantDetails?restaurantId=${restaurant.id}`)}>
               <View style={styles.restaurantImageContainer}>
                 <Image 
                   source={{ uri: restaurant.image }}
@@ -230,7 +233,7 @@ export default function RestaurantMenuScreen(){
                       <Text style={styles.menuItemPrice}>{item.price}</Text>
                       
                       <TouchableOpacity style={styles.addButton}>
-                        <Text style={styles.addButtonText}>+</Text>
+                        <Entypo name="plus" size={24} color="black" style={styles.addButtonIcon}/>
                       </TouchableOpacity>
                     </View>
                   ))}
@@ -457,7 +460,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  addButtonText: {
+  addButtonIcon: {
     fontSize: 20,
     color: '#FFFFFF',
     fontWeight: '600',

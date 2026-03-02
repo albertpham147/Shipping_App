@@ -78,6 +78,13 @@ export default function HomeScreen() {
             </Text>
           </View>
         </Pressable>
+        <Pressable onPress={() => {router.push('/login')}}>
+          <View>
+            <Text>
+              Page login
+            </Text>
+          </View>
+        </Pressable>
       </View>
     </SafeAreaView>
   )

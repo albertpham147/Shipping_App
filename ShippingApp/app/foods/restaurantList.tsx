@@ -55,7 +55,7 @@ export default function RestaurantListScreen(){
   let currentLocation: string = "123 Nguyễn Huệ, Quận 1, TP.HCM";
 
   function navigateLocationSelection(){
-    router.push(`/foods/restaurantMenu`);
+    router.push(`/locationSelection`);
   }
 
   return (
@@ -63,7 +63,7 @@ export default function RestaurantListScreen(){
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity style={styles.backButton}>
+          <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
             <Ionicons name="chevron-back" size={24} color="black" />
           </TouchableOpacity>
           
@@ -83,7 +83,7 @@ export default function RestaurantListScreen(){
           </View>
 
           {/* Shopping cart */}
-          <TouchableOpacity>
+          <TouchableOpacity style={styles.backButton} onPress={() => router.push('/foods/cart')}>
             <Entypo name="shopping-cart" size={24} color="black" style={styles.shoppingCart}/>
             <View style={styles.cartBadge}>
                 <Text style={styles.cartBadgeText}>{cartCount}</Text>
@@ -144,6 +144,7 @@ export default function RestaurantListScreen(){
             <TouchableOpacity 
               key={restaurant.id} 
               style={styles.restaurantCard}
+              onPress={() => router.push(`/foods/restaurantMenu?restaurantId=${restaurant.id}`)}
             >
               <View style={styles.imageContainer}>
                 <Image 

@@ -195,12 +195,12 @@ export default function orderTrackingScreen(){
 
       {/* Bottom Buttons */}
       <View style={styles.bottomButtons}>
-        <TouchableOpacity style={styles.messageButton}>
+        <TouchableOpacity style={styles.messageButton} onPress={() => { alert('Mở cửa sổ chat với tài xế...'); }}>
           <AntDesign name="message" size={24} color="black" style={styles.messageIcon}/>
           <Text style={styles.messageButtonText}>NHẮN TIN</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.callButton}>
+        <TouchableOpacity style={styles.callButton} onPress={() => { alert('Gọi điện cho tài xế...'); router.push('/foods/orderConfirmation'); }}>
           <Feather name="phone" size={24} color="white" style={styles.callIcon}/>
           <Text style={styles.callButtonText}> Gọi điện</Text>
         </TouchableOpacity>
