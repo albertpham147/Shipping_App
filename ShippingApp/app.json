@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "ShippingApp",
-    "slug": "ShippingApp",
+    "name": "Shipping Customer",
+    "slug": "ShippingCustomer",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "shippingapp",
+    "scheme": "shippingcustomer",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
