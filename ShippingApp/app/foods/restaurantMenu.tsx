@@ -107,7 +107,7 @@ export default function RestaurantMenuScreen(){
         <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
           <Ionicons name="chevron-back" size={24} color="black" />
         </TouchableOpacity>
-
+        
         {/* Search Bar */}
         <View style={styles.searchContainer}>
           <EvilIcons name="search" size={24} color="black" />

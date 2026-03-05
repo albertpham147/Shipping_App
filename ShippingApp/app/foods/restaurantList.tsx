@@ -55,7 +55,7 @@ export default function RestaurantListScreen(){
   let currentLocation: string = "123 Nguyễn Huệ, Quận 1, TP.HCM";
 
   function navigateLocationSelection(){
-    router.push(`/locationSelection`);
+    router.push(`/foods/locationSelection`);
   }
 
   return (

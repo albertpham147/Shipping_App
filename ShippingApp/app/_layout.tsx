@@ -44,6 +44,16 @@ export default function RootLayout() {
         <Stack.Screen name="foods/orderTracking" options={{ headerShown: false }} />
         <Stack.Screen name="foods/dishReviews" options={{ headerShown: false }} />
         <Stack.Screen name="foods/rating" options={{ headerShown: false }} />
+
+        {/* Deliverys Screens */}
+        <Stack.Screen name="deliverys/pickupLocation" options={{ headerShown: false }} />
+        <Stack.Screen name="deliverys/deliveryLocation" options={{ headerShown: false }} />
+        <Stack.Screen name="deliverys/orderDetails" options={{ headerShown: false }} />
+        <Stack.Screen name="deliverys/findingDriver" options={{ headerShown: false }} />
+        <Stack.Screen name="deliverys/driverEnRoute" options={{ headerShown: false }} />
+        <Stack.Screen name="deliverys/orderConfirmation" options={{ headerShown: false }} />
+        <Stack.Screen name="deliverys/deliverySuccess" options={{ headerShown: false }} />
+
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

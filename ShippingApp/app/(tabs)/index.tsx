@@ -8,7 +8,7 @@ type ServiceCard = {
   label: string;
   image: string;
   orange?: boolean;
-  route?: '/ride/rideSearch' | '/foods/restaurantList';
+  route?: '/ride/rideSearch' | '/foods/restaurantList' | '/deliverys/pickupLocation';
 };
 
 const SERVICE_CARDS: ServiceCard[] = [
@@ -29,6 +29,7 @@ const SERVICE_CARDS: ServiceCard[] = [
     label: 'Giao hàng',
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuCDu77nZCIPUIsciGH3kwpx6U620-Wckf6Kf7aSUAQB6HK5RZCx37Bpy0eVgJNicUNVki4_DHtyUIap0zkaJHFNO1UkcnX0SLka5rp5jUWmqQHUqeVrEVPQqpuNld3IbiAlbVkHsQJZL8Z8FHVJTvC7JLQdf3b7r4Ay0v_8Z1aQFniCHhkUZNzQpauTiCybFjTnAkrWk_dalPD8J8Xm7tHqeG7EMGkdrae9P6UgQUB_-PPrtte0jUBpgCETc4TFYV7uvvboximjyx1X',
+    route: '/deliverys/pickupLocation'
   },
 ];
 

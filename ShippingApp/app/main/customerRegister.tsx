@@ -92,7 +92,7 @@ export default function CustomerRegisterScreen() {
 
           <View style={styles.footer}>
             <Text style={styles.footerText}>Bạn đã có tài khoản?</Text>
-            <TouchableOpacity onPress={() => router.replace('/customerLogin')}>
+            <TouchableOpacity onPress={() => router.replace('/main/customerLogin')}>
               <Text style={styles.footerLink}>Đăng nhập</Text>
             </TouchableOpacity>
           </View>
