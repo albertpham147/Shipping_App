@@ -38,7 +38,6 @@ const DeliverySuccessScreen = () => {
   };
 
   const handleSubmitReview = () => {
-    console.log('Submit review:', { rating: driverRating, review });
     // Navigate to home
     router.push('/(tabs)')
   };

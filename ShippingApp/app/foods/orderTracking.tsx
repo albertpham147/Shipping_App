@@ -105,7 +105,7 @@ export default function orderTrackingScreen(){
           </View>
         </View>
       </View>
-
+      
       {/* Order Status Section */}
       <ScrollView style={styles.statusContainer} showsVerticalScrollIndicator={false}>
         {/* Status Timeline */}

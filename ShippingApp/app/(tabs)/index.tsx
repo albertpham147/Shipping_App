@@ -1,5 +1,6 @@
 import React from 'react';
 import { ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+
 import { useRouter } from 'expo-router';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Colors, BorderRadius, Spacing } from '../../constants/theme';

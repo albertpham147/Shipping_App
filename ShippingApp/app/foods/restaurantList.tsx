@@ -42,7 +42,7 @@ export default function RestaurantListScreen(){
     },
   ];
 
-    // Food categories
+  // Food categories
   const categories = [
     { id: 1, name: 'Phở', icon: '🍜', color: '#FF6B35' },
     { id: 2, name: 'Bánh Mì', icon: '🥖', color: '#4A5568' },
@@ -55,7 +55,11 @@ export default function RestaurantListScreen(){
   let currentLocation: string = "123 Nguyễn Huệ, Quận 1, TP.HCM";
 
   function navigateLocationSelection(){
-    router.push(`/foods/locationSelection`);
+    router.push(`/`);
+  }
+
+  function navigateFoodMenuList(){
+    router.push('/foods/foodMenuList')
   }
 
   return (
@@ -133,7 +137,7 @@ export default function RestaurantListScreen(){
         {/* Section Title */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Món Việt gợi ý</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigateFoodMenuList()}>
             <Text style={styles.seeAll}>Xem tất cả ›</Text>
           </TouchableOpacity>
         </View>

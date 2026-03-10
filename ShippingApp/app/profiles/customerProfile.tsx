@@ -1,5 +1,6 @@
 ﻿import React from 'react';
-import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -32,13 +33,6 @@ export default function CustomerProfileScreen() {
         <View style={styles.menuList}>
           <MenuRow icon="location-on" iconBg="#DBEAFE" iconColor="#2563EB" label="Địa chỉ đã lưu" />
           <MenuRow icon="payments" iconBg="#DCFCE7" iconColor="#16A34A" label="Phương thức thanh toán" />
-          <MenuRow
-            icon="electric-rickshaw"
-            iconBg="#FFEDD5"
-            iconColor="#F2590D"
-            label="Trở thành đối tác của chúng tôi"
-            onPress={() => router.push('/driverLogin')}
-          />
           <MenuRow icon="help" iconBg="#F3F4F6" iconColor="#6B7280" label="Trung tâm trợ giúp" />
         </View>
 

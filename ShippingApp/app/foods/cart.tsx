@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import { Alert } from 'react-native';
 
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import Entypo from '@expo/vector-icons/Entypo';
 
 import promoCodeImage from '@/assets/icons/promo-code.png';
+
 
 export default function CartScreen() {
   const router = useRouter();
@@ -52,6 +54,26 @@ export default function CartScreen() {
       return item;
     }).filter(item => item.quantity > 0));
   };
+
+  function HandleOrderCart(){
+    // alert('Đặt hàng thành công!'); 
+    Alert.alert('Đặt Đồ Ăn', "Bạn chắc có muốn đặt đồ ăn không ?", [
+      {
+        text: "Có", 
+        onPress: () => {
+          router.push('/foods/orderTracking'); 
+        }
+      },
+      {
+        text: "Không", 
+        onPress: () => {
+          console.log("Hủy");
+        },
+        style: 'cancel'
+
+      }
+    ])
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -192,7 +214,7 @@ export default function CartScreen() {
 
       {/* Checkout Button */}
       <View style={styles.checkoutButtonContainer}>
-        <TouchableOpacity style={styles.checkoutButton} onPress={() => { alert('Đặt hàng thành công!'); router.push('/foods/orderTracking'); }}>
+        <TouchableOpacity style={styles.checkoutButton} onPress={() => HandleOrderCart()}>
           <Text style={styles.checkoutButtonText}>Đặt hàng</Text>
           <Text style={styles.checkoutButtonPrice}>
             {total.toLocaleString('vi-VN')}đ

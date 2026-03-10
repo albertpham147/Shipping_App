@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -10,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -85,11 +85,6 @@ export default function CustomerLoginScreen() {
               <Text style={styles.footerLink}>Đăng ký ngay</Text>
             </TouchableOpacity>
           </View>
-
-          <TouchableOpacity style={styles.driverLinkButton} onPress={() => router.push('/driverLogin')}>
-            <Text style={styles.driverLinkText}>Trở thành đối tác của chúng tối</Text>
-            <MaterialCommunityIcons name="arrow-right" size={18} color={Colors.primaryDark} />
-          </TouchableOpacity>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
